@@ -4,7 +4,7 @@ import { LocationHighlights } from "../../components/home/location-highlights";
 import { Accommodation } from "../../components/home/accommodation";
 import { Services } from "../../components/home/services";
 import { GallerySection } from "../../components/home/gallery-section";
-import { ExploreSpaces } from "../../components/home/explore-spaces";
+
 import { ScrollReveal } from "../../components/scroll-animations";
 
 export default function Home() {
@@ -21,9 +21,7 @@ export default function Home() {
         <Accommodation />
       </ScrollReveal>
 
-      <ScrollReveal direction="up" delay={0.1}>
-        <ExploreSpaces />
-      </ScrollReveal>
+
 
       <ScrollReveal>
         <LocationHighlights />
