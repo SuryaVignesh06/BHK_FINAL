@@ -1,6 +1,7 @@
 "use client";
 
 import { Header } from "../../../components/layout/header";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -51,6 +52,7 @@ const rooms = [
 ];
 
 export default function BookingPage() {
+    const router = useRouter();
     const [selectedRoom, setSelectedRoom] = useState(rooms[0]);
     const [acFilter, setAcFilter] = useState(false);
     const [advancePayment, setAdvancePayment] = useState(false);
@@ -233,7 +235,7 @@ export default function BookingPage() {
 
                                         <button
                                             type="button"
-                                            onClick={() => window.location.href = "/payment"}
+                                            onClick={() => router.push("/payment")}
                                             className="w-full bg-[#0F2822] text-[#D4AF37] font-bold py-4 rounded-none hover:bg-[#D4AF37] hover:text-[#0F2822] transition-colors shadow-lg"
                                         >
                                             {advancePayment ? "Pay & Confirm Booking" : "Confirm Booking"}
