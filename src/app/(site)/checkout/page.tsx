@@ -1,6 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { useState, Suspense } from "react";
 import { Header } from "../../../components/layout/header";
 import { motion } from "framer-motion";
@@ -44,7 +45,7 @@ function CheckoutContent() {
                 </motion.div>
                 <h2 className="text-3xl font-playfair font-bold mb-2">Payment Successful!</h2>
                 <p className="text-muted-foreground mb-8">Your booking for Room {roomId} is confirmed.</p>
-                <a href="/" className="px-8 py-3 bg-primary text-white rounded-full font-bold">Return Home</a>
+                <Link href="/" className="px-8 py-3 bg-primary text-white rounded-full font-bold">Return Home</Link>
             </div>
         );
     }
