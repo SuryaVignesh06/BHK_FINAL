@@ -37,6 +37,7 @@ export function GallerySection() {
                     scrollSpeed={2}
                     enableWheel={true}
                     active={isInView}
+                    autoScroll={true}
                 />
             </div>
 
