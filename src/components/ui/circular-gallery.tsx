@@ -1,7 +1,7 @@
 "use client";
 
 import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from 'ogl';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import './circular-gallery.css';
 
 function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
@@ -574,14 +574,13 @@ export default function CircularGallery({
 }: any) {
     const containerRef = useRef<HTMLDivElement>(null);
     const appRef = useRef<App | null>(null);
-    const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
         if (!containerRef.current) return;
 
         if (appRef.current) {
             appRef.current.active = active;
-            appRef.current.autoScroll = autoScroll && !isHovered;
+            appRef.current.autoScroll = autoScroll;
             return;
         }
 
@@ -594,14 +593,7 @@ export default function CircularGallery({
             app.destroy();
             appRef.current = null;
         };
-    }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase, enableWheel, active, autoScroll, isHovered]);
+    }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase, enableWheel, active, autoScroll]);
 
-    return (
-        <div
-            className="circular-gallery w-full h-full min-h-[500px] cursor-grab active:cursor-grabbing"
-            ref={containerRef}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-        />
-    );
+    return <div className="circular-gallery w-full h-full min-h-[500px] cursor-grab active:cursor-grabbing" ref={containerRef} />;
 }
