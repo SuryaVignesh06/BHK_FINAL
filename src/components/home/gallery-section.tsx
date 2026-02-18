@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { useInView, motion } from "framer-motion";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import { imagePath } from "../../lib/utils";
 
@@ -40,9 +41,9 @@ export function GallerySection() {
             </div>
 
             <div className="absolute bottom-10 left-0 w-full flex justify-center z-20 pointer-events-auto">
-                <a href="/gallery" className="px-8 py-3 bg-white/10 backdrop-blur-md text-white font-playfair font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 rounded-full border border-white/20">
+                <Link href="/gallery" className="px-8 py-3 bg-white/10 backdrop-blur-md text-white font-playfair font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 rounded-full border border-white/20">
                     View Full Gallery
-                </a>
+                </Link>
             </div>
         </section>
     );
