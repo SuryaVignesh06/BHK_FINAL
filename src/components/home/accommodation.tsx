@@ -14,7 +14,7 @@ const rooms = [
         type: "Flat",
         guests: "4 Guests",
         image: imagePath("/images/flat1.jpg"),
-        price: "₹4,500",
+        price: "₹8,000",
         description: "A spacious luxury flat with modern amenities, perfect for families.",
         features: ["Split AC", "King Size Bed", "Free Wi-Fi", "TV"],
         gallery: [
@@ -33,7 +33,7 @@ const rooms = [
         type: "Flat",
         guests: "4 Guests",
         image: imagePath("/images/flat2-1.jpg"),
-        price: "₹4,500",
+        price: "₹8,000",
         description: "Elegant and comfortable, offering a serene escape in the city.",
         features: ["Split AC", "Double Bed", "Free Wi-Fi", "TV"],
         gallery: [
@@ -51,7 +51,7 @@ const rooms = [
         type: "Suite",
         guests: "2 Guests",
         image: imagePath("/images/suite1.jpg"),
-        price: "₹6,000",
+        price: "₹3,000",
         description: "Experience royalty with our premium suite featuring exclusive services.",
         features: ["Split AC", "Premium Bedding", "Panoramic View"],
         gallery: [
@@ -65,7 +65,7 @@ const rooms = [
         type: "Special",
         guests: "2 Guests",
         image: imagePath("/images/deck1.jpg"),
-        price: "₹5,500",
+        price: "₹7,000",
         description: "Breathtaking views from your private deck. A romantic getaway.",
         features: ["Split AC", "Outdoor Seating", "Stargazing"],
         gallery: [
