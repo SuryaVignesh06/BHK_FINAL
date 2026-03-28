@@ -59,7 +59,7 @@ export function Hero() {
 
     const downloadVideo = async () => {
         try {
-            const response = await fetch("/videos/herovideo.mp4");
+            const response = await fetch(imagePath("/videos/herovideo.mp4"));
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
@@ -71,7 +71,7 @@ export function Hero() {
             window.URL.revokeObjectURL(url);
         } catch {
             // Fallback: open in new tab if fetch fails
-            window.open("/videos/herovideo.mp4", "_blank");
+            window.open(imagePath("/videos/herovideo.mp4"), "_blank");
         }
     };
 
@@ -97,7 +97,7 @@ export function Hero() {
                         className="w-full h-full object-cover"
                     >
                         <source
-                            src="/videos/herovideo.mp4"
+                            src={imagePath("/videos/herovideo.mp4")}
                             type="video/mp4"
                         />
                     </video>
