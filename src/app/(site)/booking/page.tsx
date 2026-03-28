@@ -13,7 +13,7 @@ const rooms = [
         id: "flat-1",
         title: "Flat 1",
         guests: 4,
-        price: 4500,
+        price: 8000,
         image: imagePath("/images/flat1.jpg"),
         features: ["Split AC", "King Size Bed", "Kitchenette", "Balcony", "City View"]
     },
@@ -21,41 +21,44 @@ const rooms = [
         id: "flat-2",
         title: "Flat 2",
         guests: 4,
-        price: 4500,
+        price: 8000,
         image: imagePath("/images/flat2-1.jpg"),
-        features: ["Split AC", "Queen Size Bed", "Living Area", "Work Desk", "Garden View"]
+        features: ["Split AC", "Living Area", "Work Desk", "Garden View"]
     },
     {
         id: "suite",
         title: "Suite Room",
         guests: 2,
-        price: 6000,
+        price: 3000,
         image: imagePath("/images/suite1.jpg"),
-        features: ["Split AC", "Jacuzzi", "Panoramic View", "Mini Bar", "Premium Bedding"]
+        features: ["Split AC", "Jacuzzi", "Panoramic View", "Premium Bedding"]
     },
     {
         id: "deck",
         title: "Deck Room",
         guests: 2,
-        price: 5500,
+        price: 7000,
         image: imagePath("/images/deck1.jpg"),
-        features: ["Split AC", "Private Terrace", "Outdoor Seating", "Stargazing", "Romantic Setup"]
-    },
-    {
-        id: "open-area",
-        title: "Open Area",
-        guests: 10,
-        price: 3000,
-        image: imagePath("/images/deck1.jpg"),
-        features: ["Open Air", "Event Space", "Group Seating", "Natural Breeze"]
+        features: ["Split AC", "Outdoor Seating", "Stargazing"]
     }
 ];
 
 export default function BookingPage() {
     const router = useRouter();
-    const [selectedRoom, setSelectedRoom] = useState(rooms[0]);
+    const [selectedRooms, setSelectedRooms] = useState([rooms[0]]);
     const [acFilter, setAcFilter] = useState(false);
-    const [advancePayment, setAdvancePayment] = useState(false);
+
+    const toggleRoom = (room: any) => {
+        if (selectedRooms.find(r => r.id === room.id)) {
+            // Already selected, remove if more than 1 selected or allow removing all?
+            // Let's allow removing all but the summary will handle empty state.
+            setSelectedRooms(selectedRooms.filter(r => r.id !== room.id));
+        } else {
+            setSelectedRooms([...selectedRooms, room]);
+        }
+    };
+
+    const subtotal = selectedRooms.reduce((sum, room) => sum + room.price, 0);
 
     const filteredRooms = acFilter
         ? rooms.filter((r) => r.features.includes("Split AC"))
@@ -110,52 +113,50 @@ export default function BookingPage() {
 
                     {/* Room Selection */}
                     <div className="lg:col-span-8 space-y-8">
-                        {filteredRooms.map((room) => (
-                            <div
-                                key={room.id}
-                                onClick={() => setSelectedRoom(room)}
-                                className={`flex flex-col md:flex-row gap-6 p-6 border transition-all cursor-pointer ${selectedRoom.id === room.id ? "border-accent bg-accent/5 shadow-xl" : "border-gray-100 bg-white hover:border-gray-300"}`}
-                            >
-                                <div className="relative w-full md:w-64 aspect-video md:aspect-square shrink-0">
-                                    <Image src={room.image} alt={room.title} fill className="object-cover" />
-                                    {room.features.includes("Split AC") && (
-                                        <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-blue-500/90 backdrop-blur-sm text-white px-2 py-1 rounded-full text-xs font-bold">
-                                            <Snowflake size={10} /> AC
+                        {filteredRooms.map((room) => {
+                            const isSelected = selectedRooms.some(r => r.id === room.id);
+                            return (
+                                <div
+                                    key={room.id}
+                                    onClick={() => toggleRoom(room)}
+                                    className={`flex flex-col md:flex-row gap-6 p-6 border transition-all cursor-pointer ${isSelected ? "border-accent bg-accent/5 shadow-xl" : "border-gray-100 bg-white hover:border-gray-300"}`}
+                                >
+                                    <div className="relative w-full md:w-64 aspect-video md:aspect-square shrink-0">
+                                        <Image src={room.image} alt={room.title} fill className="object-cover" />
+                                        {room.features.includes("Split AC") && (
+                                            <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-blue-500/90 backdrop-blur-sm text-white px-2 py-1 rounded-full text-xs font-bold">
+                                                <Snowflake size={10} /> AC
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <div className="flex-1 flex flex-col justify-center">
+                                        <div className="flex justify-between items-start mb-2">
+                                            <h3 className="text-2xl font-playfair font-bold text-primary">{room.title}</h3>
+                                            {isSelected && <div className="bg-accent text-white p-1 rounded-full"><Check size={16} /></div>}
                                         </div>
-                                    )}
-                                    {room.id === "open-area" && (
-                                        <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-green-500/90 backdrop-blur-sm text-white px-2 py-1 rounded-full text-xs font-bold">
-                                            <MapPin size={10} /> Open Area
+
+                                        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                                            <span className="flex items-center gap-1"><Users size={16} /> {room.guests} Guests</span>
+                                            <span className="flex items-center gap-1"><Star size={16} className="text-yellow-400 fill-current" /> 4.9</span>
                                         </div>
-                                    )}
-                                </div>
 
-                                <div className="flex-1 flex flex-col justify-center">
-                                    <div className="flex justify-between items-start mb-2">
-                                        <h3 className="text-2xl font-playfair font-bold text-primary">{room.title}</h3>
-                                        {selectedRoom.id === room.id && <div className="bg-accent text-white p-1 rounded-full"><Check size={16} /></div>}
-                                    </div>
+                                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
+                                            {room.features.map((f, i) => (
+                                                <span key={i} className={`text-xs font-inter px-2 py-1 ${f === "Split AC" ? "bg-blue-50 text-blue-600 font-bold" : "bg-gray-100 text-gray-600"}`}>
+                                                    {f === "Split AC" ? `❄️ ${f}` : f}
+                                                </span>
+                                            ))}
+                                        </div>
 
-                                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                                        <span className="flex items-center gap-1"><Users size={16} /> {room.guests} Guests</span>
-                                        <span className="flex items-center gap-1"><Star size={16} className="text-yellow-400 fill-current" /> 4.9</span>
-                                    </div>
-
-                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
-                                        {room.features.map((f, i) => (
-                                            <span key={i} className={`text-xs font-inter px-2 py-1 ${f === "Split AC" ? "bg-blue-50 text-blue-600 font-bold" : "bg-gray-100 text-gray-600"}`}>
-                                                {f === "Split AC" ? `❄️ ${f}` : f}
-                                            </span>
-                                        ))}
-                                    </div>
-
-                                    <div className="mt-auto">
-                                        <span className="text-2xl font-bold text-primary">₹ {room.price.toLocaleString()}</span>
-                                        <span className="text-xs text-muted-foreground"> / night</span>
+                                        <div className="mt-auto">
+                                            <span className="text-2xl font-bold text-primary">₹ {room.price.toLocaleString()}</span>
+                                            <span className="text-xs text-muted-foreground"> / night</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
 
                     {/* Booking Form (Sticky) */}
@@ -164,14 +165,31 @@ export default function BookingPage() {
                             <div className="bg-white p-6 border border-gray-100 shadow-2xl">
                                 <h3 className="text-2xl font-playfair font-bold mb-6">Reservation Summary</h3>
 
-                                <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
-                                    <div className="w-16 h-16 relative">
-                                        <Image src={selectedRoom.image} alt={selectedRoom.title} fill className="object-cover" />
-                                    </div>
-                                    <div>
-                                        <p className="font-bold text-primary">{selectedRoom.title}</p>
-                                        <p className="text-sm text-muted-foreground">₹ {selectedRoom.price.toLocaleString()} / night</p>
-                                    </div>
+                                <div className="space-y-4 mb-6 pb-6 border-b border-gray-100">
+                                    {selectedRooms.length === 0 ? (
+                                        <p className="text-sm text-amber-600 font-medium bg-amber-50 p-3 text-center">Please select at least one room to continue.</p>
+                                    ) : (
+                                        selectedRooms.map(room => (
+                                            <div key={room.id} className="flex items-center gap-4">
+                                                <div className="w-12 h-12 relative flex-shrink-0">
+                                                    <Image src={room.image} alt={room.title} fill className="object-cover" />
+                                                </div>
+                                                <div className="flex-1">
+                                                    <p className="font-bold text-primary text-sm">{room.title}</p>
+                                                    <p className="text-xs text-muted-foreground">₹ {room.price.toLocaleString()} / night</p>
+                                                </div>
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        toggleRoom(room);
+                                                    }}
+                                                    className="text-gray-400 hover:text-red-500 transition-colors"
+                                                >
+                                                    <Check size={14} className="rotate-45" />
+                                                </button>
+                                            </div>
+                                        ))
+                                    )}
                                 </div>
 
                                 <form className="space-y-4">
@@ -196,49 +214,28 @@ export default function BookingPage() {
                                         <input type="email" placeholder="Enter your email address" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 text-sm font-medium focus:outline-none focus:border-accent" />
                                     </div>
 
-                                    {/* Advance Payment Option */}
-                                    <div className="flex items-center gap-3 p-3 bg-amber-50 border border-amber-200">
-                                        <input
-                                            type="checkbox"
-                                            id="advancePayment"
-                                            checked={advancePayment}
-                                            onChange={(e) => setAdvancePayment(e.target.checked)}
-                                            className="w-4 h-4 accent-[#D4AF37]"
-                                        />
-                                        <label htmlFor="advancePayment" className="text-sm font-medium cursor-pointer">
-                                            <CreditCard size={14} className="inline mr-1 text-[#D4AF37]" />
-                                            Pay in advance (Get priority confirmation)
-                                        </label>
-                                    </div>
+
 
                                     {/* Booking Time Policy */}
                                     <div className="bg-gray-50 p-3 text-xs text-gray-500 space-y-1">
                                         <p className="font-bold uppercase text-gray-600">Booking Policy</p>
                                         <p>• Check-in: <strong>1:00 PM</strong></p>
                                         <p>• Check-out: <strong>11:00 AM</strong></p>
-                                        <p>• Free cancellation up to 24 hours before check-in</p>
                                     </div>
 
                                     <div className="pt-4">
-                                        <div className="flex justify-between mb-2 text-sm">
-                                            <span>₹ {selectedRoom.price.toLocaleString()} x 1 Night</span>
-                                            <span>₹ {selectedRoom.price.toLocaleString()}</span>
-                                        </div>
-                                        <div className="flex justify-between mb-4 text-sm">
-                                            <span>Taxes & Fees (12%)</span>
-                                            <span>₹ {(selectedRoom.price * 0.12).toLocaleString()}</span>
-                                        </div>
                                         <div className="flex justify-between mb-6 text-lg font-bold text-primary pt-4 border-t border-gray-100">
-                                            <span>Total</span>
-                                            <span>₹ {(selectedRoom.price * 1.12).toLocaleString()}</span>
+                                            <span>Total ({selectedRooms.length} Rooms)</span>
+                                            <span>₹ {subtotal.toLocaleString()}</span>
                                         </div>
 
                                         <button
                                             type="button"
+                                            disabled={selectedRooms.length === 0}
                                             onClick={() => router.push("/payment")}
-                                            className="w-full bg-[#0F2822] text-[#D4AF37] font-bold py-4 rounded-none hover:bg-[#D4AF37] hover:text-[#0F2822] transition-colors shadow-lg"
+                                            className="w-full bg-[#0F2822] text-[#D4AF37] font-bold py-4 rounded-none hover:bg-[#D4AF37] hover:text-[#0F2822] transition-colors shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
-                                            {advancePayment ? "Pay & Confirm Booking" : "Confirm Booking"}
+                                            Confirm Booking
                                         </button>
                                     </div>
                                 </form>
@@ -249,8 +246,8 @@ export default function BookingPage() {
                                 <Phone size={24} className="mx-auto mb-3 text-[#D4AF37]" />
                                 <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">Prefer to book by phone?</p>
                                 <p className="text-xl font-bold text-[#D4AF37] mb-2">Call Us to Book</p>
-                                <a href="tel:+919876543210" className="text-2xl font-bold hover:text-[#D4AF37] transition-colors">
-                                    +91 98765 43210
+                                <a href="tel:8977665668" className="text-2xl font-bold hover:text-[#D4AF37] transition-colors">
+                                    89776 65668
                                 </a>
                                 <p className="text-xs text-gray-400 mt-2">Available 24/7 for reservations</p>
                             </div>

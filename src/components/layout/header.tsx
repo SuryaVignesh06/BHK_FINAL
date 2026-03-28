@@ -45,12 +45,10 @@ export function Header() {
             <div className="container mx-auto px-6">
                 <div className="flex items-center justify-between relative">
 
-                    {/* Left Nav (Desktop) / Back Button */}
+                    {/* Left Nav (Desktop) */}
                     <nav className="hidden lg:flex items-center gap-12 w-1/3 justify-end pr-12">
-                        <nav className="hidden lg:flex items-center gap-12 w-1/3 justify-end pr-12">
-                            <NavLink href="/">Home</NavLink>
-                            <NavLink href="/booking">Booking</NavLink>
-                        </nav>
+                        <NavLink href="/">Home</NavLink>
+                        <NavLink href="/booking">Booking</NavLink>
                     </nav>
 
                     {/* Center Logo */}
@@ -71,8 +69,8 @@ export function Header() {
 
                     {/* Right Nav (Desktop) */}
                     <nav className="hidden lg:flex items-center gap-12 w-1/3 justify-start pl-12">
-                        <NavLink href="/contact">Contact</NavLink>
                         <NavLink href="/gallery">Gallery</NavLink>
+                        <NavLink href="/contact">Contact</NavLink>
                     </nav>
 
                     {/* Mobile Toggle / Back */}
@@ -92,8 +90,8 @@ export function Header() {
                     <div className="lg:hidden absolute top-full left-0 w-full bg-white text-primary py-8 px-6 shadow-lg flex flex-col gap-6 items-center">
                         <NavLink href="/">Home</NavLink>
                         <NavLink href="/booking">Booking</NavLink>
-                        <NavLink href="/contact">Contact</NavLink>
                         <NavLink href="/gallery">Gallery</NavLink>
+                        <NavLink href="/contact">Contact</NavLink>
                     </div>
                 )}
             </div>

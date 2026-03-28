@@ -35,7 +35,7 @@ const rooms = [
         image: imagePath("/images/flat2-1.jpg"),
         price: "₹4,500",
         description: "Elegant and comfortable, offering a serene escape in the city.",
-        features: ["Split AC", "Queen Size Bed", "Free Wi-Fi", "TV"],
+        features: ["Split AC", "Double Bed", "Free Wi-Fi", "TV"],
         gallery: [
             imagePath("/images/flat2-1.jpg"),
             imagePath("/images/flat2-2.jpg"),
@@ -53,7 +53,7 @@ const rooms = [
         image: imagePath("/images/suite1.jpg"),
         price: "₹6,000",
         description: "Experience royalty with our premium suite featuring exclusive services.",
-        features: ["Split AC", "Premium Bedding", "Mini Bar", "Panoramic View"],
+        features: ["Split AC", "Premium Bedding", "Panoramic View"],
         gallery: [
             imagePath("/images/suite1.jpg"),
             imagePath("/images/suite2.jpg")
@@ -67,7 +67,7 @@ const rooms = [
         image: imagePath("/images/deck1.jpg"),
         price: "₹5,500",
         description: "Breathtaking views from your private deck. A romantic getaway.",
-        features: ["Split AC", "Private Terrace", "Outdoor Seating", "Stargazing"],
+        features: ["Split AC", "Outdoor Seating", "Stargazing"],
         gallery: [
             imagePath("/images/deck1.jpg"),
             imagePath("/images/deck2.jpg"),

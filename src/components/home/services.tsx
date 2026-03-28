@@ -5,10 +5,8 @@ import { Wifi, Tv, Coffee, Car, Lock, Wind } from "lucide-react";
 const services = [
     { icon: Wifi, title: "High-Speed Wifi", desc: "Stay connected seamlessly throughout your stay." },
     { icon: Tv, title: "Smart Entertainment", desc: "Latest streaming apps on large flat-screen TVs." },
-    { icon: Coffee, title: "Coffee & Tea", desc: "Complimentary brewing stations in every room." },
     { icon: Car, title: "Free Parking", desc: "Secure parking space for your vehicles." },
-    { icon: Lock, title: "24/7 Security", desc: "Round-the-clock security surveillance." },
-    { icon: Wind, title: "Climate Control", desc: "Individually controlled air conditioning." }
+    { icon: Lock, title: "24/7 Security", desc: "Round-the-clock security surveillance." }
 ];
 
 export function Services() {

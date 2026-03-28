@@ -59,7 +59,7 @@ export function Hero() {
 
     const downloadVideo = async () => {
         try {
-            const response = await fetch("https://api.armenia.travel/storage/Travel-Armenia_Hero-video-edit_08142025-2-15.mp4");
+            const response = await fetch("/videos/herovideo.mp4");
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
@@ -71,7 +71,7 @@ export function Hero() {
             window.URL.revokeObjectURL(url);
         } catch {
             // Fallback: open in new tab if fetch fails
-            window.open("https://api.armenia.travel/storage/Travel-Armenia_Hero-video-edit_08142025-2-15.mp4", "_blank");
+            window.open("/videos/herovideo.mp4", "_blank");
         }
     };
 
@@ -97,7 +97,7 @@ export function Hero() {
                         className="w-full h-full object-cover"
                     >
                         <source
-                            src="https://api.armenia.travel/storage/Travel-Armenia_Hero-video-edit_08142025-2-15.mp4"
+                            src="/videos/herovideo.mp4"
                             type="video/mp4"
                         />
                     </video>

@@ -1,7 +1,6 @@
 "use client";
 
 import { Header } from "../../../components/layout/header";
-import { Footer } from "../../../components/layout/footer";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function ContactPage() {
@@ -21,8 +20,7 @@ export default function ContactPage() {
                             <Phone size={32} />
                         </div>
                         <h3 className="text-xl font-bold font-playfair mb-2">Phone</h3>
-                        <p className="text-muted-foreground">+91 98765 43210</p>
-                        <p className="text-muted-foreground">+91 12345 67890</p>
+                        <p className="text-muted-foreground">89776 65668</p>
                     </div>
 
                     <div className="text-center p-8 border border-gray-100 rounded-none shadow-lg hover:shadow-xl transition-shadow">
@@ -30,22 +28,26 @@ export default function ContactPage() {
                             <Mail size={32} />
                         </div>
                         <h3 className="text-xl font-bold font-playfair mb-2">Email</h3>
-                        <p className="text-muted-foreground">bookings@voho.com</p>
-                        <p className="text-muted-foreground">info@voho.com</p>
+                        <p className="text-muted-foreground">voholuxury@gmail.com</p>
                     </div>
 
-                    <div className="text-center p-8 border border-gray-100 rounded-none shadow-lg hover:shadow-xl transition-shadow">
+                    <a
+                        href="https://maps.app.goo.gl/YoRQbmTBrbusF5K9A"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-center p-8 border border-gray-100 rounded-none shadow-lg hover:shadow-xl transition-shadow block hover:border-accent"
+                    >
                         <div className="w-16 h-16 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-6">
                             <MapPin size={32} />
                         </div>
                         <h3 className="text-xl font-bold font-playfair mb-2">Location</h3>
                         <p className="text-muted-foreground">Near Someswara Temple,</p>
                         <p className="text-muted-foreground">Bhimavaram, Andhra Pradesh</p>
-                    </div>
+                    </a>
                 </div>
 
                 {/* Form */}
-                <div className="max-w-2xl mx-auto bg-gray-50 p-8 md:p-12 rounded-none">
+                <div className="max-w-2xl mx-auto bg-gray-50 p-8 md:p-12 rounded-none mb-24">
                     <h3 className="text-2xl font-bold font-playfair mb-8 text-center">Send us a Message</h3>
                     <form className="space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

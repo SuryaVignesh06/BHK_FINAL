@@ -10,20 +10,29 @@ export function Footer() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
 
-                    {/* Left: Newsletter (Span 5) */}
+                    {/* Left: Contact Us (Span 5) */}
                     <div className="lg:col-span-5 space-y-8">
                         <h3 className="text-3xl md:text-4xl font-inter font-bold leading-tight">
-                            Signup to our newsletter. Get exclusive offers, event updates, and hidden gems to make your stay at VOHO unforgettable!
+                            Contact Us
                         </h3>
-                        <div className="flex gap-2 max-w-md">
-                            <input
-                                type="email"
-                                placeholder="Enter your email address"
-                                className="flex-1 bg-white rounded-lg px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-accent"
-                            />
-                            <button className="bg-accent text-black font-bold px-6 py-3 rounded-lg hover:bg-yellow-500 transition-colors">
-                                Subscribe
-                            </button>
+                        <div className="space-y-4 text-lg font-medium">
+                            <div className="flex flex-col gap-4">
+                                <a href="https://www.instagram.com/voho.luxe" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors flex items-center gap-3">
+                                    <Instagram size={20} /> Instagram
+                                </a>
+                                <a href="https://www.facebook.com/share/1ByvMC9x8b/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors flex items-center gap-3">
+                                    <Facebook size={20} /> Facebook
+                                </a>
+                                <a href="https://maps.app.goo.gl/YoRQbmTBrbusF5K9A" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors flex items-center gap-3">
+                                    <MapPin size={20} /> Visit Us
+                                </a>
+                                <a href="mailto:voholuxury@gmail.com" className="hover:text-accent transition-colors flex items-center gap-3">
+                                    <Mail size={20} /> Email Us: voholuxury@gmail.com
+                                </a>
+                                <a href="tel:8977665668" className="hover:text-accent transition-colors flex items-center gap-3">
+                                    <Phone size={20} /> Call Us: 8977665668
+                                </a>
+                            </div>
                         </div>
 
                         <div className="flex items-center gap-4 mt-8 opacity-80">
@@ -64,8 +73,12 @@ export function Footer() {
                         <div className="space-y-6">
                             <p className="font-bold text-white mb-2">Follow us</p>
                             <div className="flex gap-4 mb-4">
-                                <Facebook className="hover:text-accent transition-colors cursor-pointer" size={20} />
-                                <Instagram className="hover:text-accent transition-colors cursor-pointer" size={20} />
+                                <a href="https://www.facebook.com/share/1ByvMC9x8b/" target="_blank" rel="noopener noreferrer">
+                                    <Facebook className="hover:text-accent transition-colors cursor-pointer" size={20} />
+                                </a>
+                                <a href="https://www.instagram.com/voho.luxe" target="_blank" rel="noopener noreferrer">
+                                    <Instagram className="hover:text-accent transition-colors cursor-pointer" size={20} />
+                                </a>
                                 <Youtube className="hover:text-accent transition-colors cursor-pointer" size={20} />
                             </div>
                             <p className="text-accent font-bold">#VOHOBhimavaram</p>
@@ -77,7 +90,6 @@ export function Footer() {
                         {/* Weather/Location Widget */}
                         <div className="space-y-6 bg-white/5 p-4 rounded-2xl backdrop-blur-sm self-start">
                             <div className="flex items-center gap-2">
-                                <span className="text-2xl">☁️</span>
                                 <span className="text-xl font-bold">28°C</span>
                             </div>
                             <div className="text-xs text-white/60">
