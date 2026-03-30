@@ -46,6 +46,34 @@ const rooms = [
         ]
     },
     {
+        id: "flat-3",
+        title: "Luxury Flat 3",
+        type: "Flat",
+        guests: "4 Guests",
+        image: imagePath("/images/flat3.jpg"),
+        price: "₹8,000",
+        description: "Sophisticated design meets absolute comfort in our newest flat.",
+        features: ["Split AC", "King Bed", "Smart TV", "Garden View"],
+        gallery: [
+            imagePath("/images/flat3.jpg"),
+            imagePath("/images/flat4.jpg")
+        ]
+    },
+    {
+        id: "flat-4",
+        title: "Luxury Flat 4",
+        type: "Flat",
+        guests: "4 Guests",
+        image: imagePath("/images/flat4.jpg"),
+        price: "₹8,000",
+        description: "Modern living with premium finishes and a beautiful private balcony.",
+        features: ["Split AC", "Work Desk", "Balcony", "Free Wi-Fi"],
+        gallery: [
+            imagePath("/images/flat4.jpg"),
+            imagePath("/images/flat5.jpg")
+        ]
+    },
+    {
         id: "suite",
         title: "Royal Suite",
         type: "Suite",
@@ -73,6 +101,20 @@ const rooms = [
             imagePath("/images/deck2.jpg"),
             imagePath("/images/deck3.jpg"),
             imagePath("/images/deck4.jpg")
+        ]
+    },
+    {
+        id: "open-area",
+        title: "Open Area / Event Space",
+        type: "Event",
+        guests: "20 Guests",
+        image: imagePath("/images/deck2.jpg"),
+        price: "₹10,000",
+        description: "Spacious open area perfect for parties, events, and family gatherings.",
+        features: ["Open Sky", "Music System", "Party Space", "Waiters"],
+        gallery: [
+            imagePath("/images/deck2.jpg"),
+            imagePath("/images/deck3.jpg")
         ]
     }
 ];

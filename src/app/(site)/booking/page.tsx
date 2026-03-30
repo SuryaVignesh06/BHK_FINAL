@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Check, Users, Star, ArrowLeft, Snowflake, Phone, Clock, CreditCard, MapPin } from "lucide-react";
+import { Check, Users, Star, ArrowLeft, Snowflake, Phone, Clock, CreditCard, MapPin, ShoppingBag } from "lucide-react";
 import { imagePath } from "../../../lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 const rooms = [
     {
@@ -26,6 +27,22 @@ const rooms = [
         features: ["Split AC", "Living Area", "Work Desk", "Garden View"]
     },
     {
+        id: "flat-3",
+        title: "Flat 3",
+        guests: 4,
+        price: 8000,
+        image: imagePath("/images/flat3.jpg"),
+        features: ["Split AC", "King Size Bed", "Kitchenette", "Garden View"]
+    },
+    {
+        id: "flat-4",
+        title: "Flat 4",
+        guests: 4,
+        price: 8000,
+        image: imagePath("/images/flat4.jpg"),
+        features: ["Split AC", "Living Area", "Work Desk", "Balcony"]
+    },
+    {
         id: "suite",
         title: "Suite Room",
         guests: 2,
@@ -40,6 +57,14 @@ const rooms = [
         price: 7000,
         image: imagePath("/images/deck1.jpg"),
         features: ["Split AC", "Outdoor Seating", "Stargazing"]
+    },
+    {
+        id: "open-area",
+        title: "Open Area",
+        guests: 20,
+        price: 10000,
+        image: imagePath("/images/deck2.jpg"),
+        features: ["Open Sky", "Event Space", "Party Area", "Panoramic View"]
     }
 ];
 
@@ -65,7 +90,7 @@ export default function BookingPage() {
         : rooms;
 
     return (
-        <main className="min-h-screen bg-background">
+        <main className="min-h-screen bg-background relative selection:bg-accent selection:text-white pb-32 lg:pb-0">
             <Header />
 
             <div className="pt-32 pb-24 container mx-auto px-4">
@@ -255,6 +280,32 @@ export default function BookingPage() {
                     </div>
                 </div>
             </div>
+
+            {/* Mobile Sticky Booking Bar */}
+            <AnimatePresence>
+                {selectedRooms.length > 0 && (
+                    <motion.div
+                        initial={{ y: 100, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: 100, opacity: 0 }}
+                        className="fixed bottom-0 left-0 right-0 z-[60] lg:hidden bg-white border-t border-gray-200 p-4 shadow-[0_-10px_30px_rgba(0,0,0,0.1)] backdrop-blur-md bg-white/95"
+                    >
+                        <div className="flex items-center justify-between gap-4 max-w-md mx-auto">
+                            <div>
+                                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">{selectedRooms.length} Room{selectedRooms.length > 1 ? 's' : ''} Selected</p>
+                                <p className="text-2xl font-bold text-primary">₹ {subtotal.toLocaleString()}</p>
+                            </div>
+                            <button
+                                onClick={() => router.push("/payment")}
+                                className="flex-1 bg-[#0F2822] text-[#D4AF37] font-bold py-4 rounded-none shadow-lg active:scale-95 transition-transform flex items-center justify-center gap-2"
+                            >
+                                <ShoppingBag size={20} />
+                                Book Now
+                            </button>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
         </main>
     );
